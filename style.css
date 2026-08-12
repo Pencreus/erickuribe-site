@@ -336,6 +336,18 @@ code {
 .role p { font-size: 0.9rem; margin: 0; }
 .role strong { color: var(--amber); font-weight: 600; }
 
+/* Unwritten content, marked loudly so it can't ship by accident. */
+.todo {
+  color: var(--red);
+  border: 1px dashed var(--red);
+  padding: 0.6rem 0.8rem;
+}
+.todo::before {
+  content: "TODO — ";
+  letter-spacing: 0.1em;
+  font-size: 0.85em;
+}
+
 @media (max-width: 40rem) {
   .role { grid-template-columns: 1fr; gap: 0.4rem; }
   .role .org { white-space: normal; display: block; }
