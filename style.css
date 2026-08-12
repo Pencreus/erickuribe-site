@@ -25,7 +25,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  background: #070b08; /* belt-and-braces: no flash of white before CSS vars resolve */
+}
 
 body {
   margin: 0;
@@ -203,7 +206,7 @@ code {
   font-size: clamp(1.35rem, 3.6vw, 2rem);
   line-height: 1.4;
   color: var(--green-mut);
-  max-width: 30ch;
+  max-width: 36ch;
   margin: 0;
 }
 .lead strong { color: var(--green); font-weight: 600; }
@@ -305,9 +308,44 @@ code {
 
 /* ---------------------------------------------------------------- SKILLS */
 
+/* ------------------------------------------------------------ BACKGROUND */
+
+.role {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px dashed var(--edge);
+}
+.role:last-child { border-bottom: 0; }
+
+.role .when {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  padding-top: 0.28rem;
+}
+.role h3 { margin-bottom: 0.35rem; }
+.role .org {
+  color: var(--green-mut);
+  font-weight: 400;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.role p { font-size: 0.9rem; margin: 0; }
+.role strong { color: var(--amber); font-weight: 600; }
+
+@media (max-width: 40rem) {
+  .role { grid-template-columns: 1fr; gap: 0.4rem; }
+  .role .org { white-space: normal; display: block; }
+}
+
+/* ---------------------------------------------------------------- SKILLS */
+
 .cols {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
   gap: 2rem;
 }
 .cols ul { list-style: none; margin: 0; padding: 0; font-size: 0.88rem; }
@@ -321,7 +359,27 @@ code {
   flex-wrap: wrap;
   gap: 0.75rem 2rem;
   font-size: 1rem;
+  align-items: baseline;
 }
+.fineprint {
+  font-size: 0.8rem;
+  margin-top: 1.25rem;
+  color: var(--green-dim);
+  max-width: 46ch;
+}
+
+/* Loud marker so an unfilled profile URL can't ship by accident. */
+a[data-todo][href=""] {
+  color: var(--red);
+  border-color: var(--red);
+  border-style: dashed;
+}
+a[data-todo][href=""]::after {
+  content: " ← set URL";
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+}
+a[data-todo][href=""]:hover { background: var(--red); color: var(--bg); }
 
 footer {
   padding: 2rem 0 3rem;
