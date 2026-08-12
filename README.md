@@ -12,12 +12,6 @@ robots.txt
 sitemap.xml
 ```
 
-## Before it goes live
-
-The **Elsewhere** section has two empty `href=""` values — LinkedIn and
-Instagram. They render in dashed red with a `← set URL` marker so they can't
-ship unnoticed. Fill both in and the marker disappears on its own.
-
 ## Privacy
 
 Deliberately not on this site: email address, phone number, home city. The
