@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erick Uribe — builds things that glow in racks</title>
+<meta name="description" content="Erick Uribe builds purpose-built hardware dashboards: rack-mounted Pi HUDs, ESP32 display controllers, and the occasional firmware fork. Southern California.">
+<meta name="theme-color" content="#070b08">
+
+<!-- Social preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://erickuribe.com/">
+<meta property="og:title" content="Erick Uribe — builds things that glow in racks">
+<meta property="og:description" content="Rack-mounted Pi HUDs, ESP32 display controllers, and the occasional firmware fork.">
+<meta name="twitter:card" content="summary">
+
+<!-- Favicon: the phosphor block cursor -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23070b08'/><rect x='8' y='6' width='16' height='20' fill='%234dffa6'/></svg>">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#builds">Skip to builds</a>
+
+<header>
+  <div class="wrap">
+    <div class="statusbar">
+      <span class="live"><span class="dot"></span>Rack online</span>
+      <span>Southern California</span>
+      <span>Est. uptime: still going</span>
+    </div>
+
+    <div class="masthead">
+      <div class="mark" role="img" aria-label="Cartoon portrait of Erick Uribe"></div>
+      <div>
+        <h1>Erick Uribe</h1>
+        <p class="tagline">Builds things that glow in racks<span class="cursor"></span></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================= LEAD -->
+<section>
+  <div class="wrap">
+    <p class="lead">
+      Cheap panels, a rack in the garage, and a
+      <strong>refusal to guess at root cause</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================== BUILDS -->
+<section id="builds">
+  <div class="wrap">
+    <h2>Selected builds</h2>
+
+    <!-- The war story. This is the one that shows how I actually work. -->
+    <article class="featured">
+      <h3>NerdMiner V2 — REST API fork <span class="badge fork">fork</span></h3>
+      <p>
+        Forked the NerdMiner firmware to expose a REST API, so a shelf of ESP32
+        miners could be herded from one controller instead of poked at one
+        screen at a time. Then the interesting part: on DigiByte, every single
+        share came back rejected.
+      </p>
+
+      <div class="trace"><span class="bad">shares accepted ........ 0 / 32</span>
+<span class="bad">pool response .......... rejected (invalid)</span>
+
+  bitcoin coinbase ..... 312 chars   ok
+  <span class="key">digibyte coinbase .... 524 chars   ← does not fit</span>
+  <span class="key">utils.cpp ............ char coinbase_buffer[512]</span>
+
+  silently truncated → malformed share → 100% reject
+
+<span class="good">buffer 512 → 1024</span>
+<span class="good">shares accepted ....... 20 / 20</span></div>
+
+      <p>
+        A fixed 512-byte buffer in <code>utils.cpp</code> was truncating
+        DigiByte's longer coinbase without complaining. Nothing logged an
+        error — the miner cheerfully submitted garbage. Reading both sides of
+        the protocol end-to-end found it; guessing at pool settings never
+        would have.
+      </p>
+    </article>
+
+    <div class="builds">
+
+      <article class="build">
+        <div class="meta">Dashboard · live</div>
+        <h3>Homelab HUD</h3>
+        <p>
+          A 1U rack-mounted status screen. Three pages of retro CRT dashboard
+          covering the network, the servers, and a crypto page, driven off a
+          shared internal API.
+        </p>
+        <div class="hw">Raspberry Pi 5 · kiosk browser</div>
+      </article>
+
+      <article class="build">
+        <div class="meta">Weather station · open source</div>
+        <h3>The Pencreus</h3>
+        <p>
+          Retro terminal weather station on a reflective LCD — the panel is
+          readable in direct sun and sips power. Home of the mascot art,
+          including the portrait up top.
+        </p>
+        <div class="hw">
+          Waveshare ESP32-S3-RLCD-4.2 ·
+          <a href="https://github.com/Pencreus/ESP32-RLCD">source</a>
+        </div>
+      </article>
+
+      <article class="build">
+        <div class="meta">Kitchen companion · live</div>
+        <h3>Kitchen HUD</h3>
+        <p>
+          A 5-inch wall companion with seven screens — weather, calendar,
+          transit, printers — built glance-first, so the thing you need is
+          the biggest thing on screen.
+        </p>
+        <div class="hw">ESP32-8048S050 · 800×480 touch</div>
+      </article>
+
+      <article class="build">
+        <div class="meta">Home control · live</div>
+        <h3>Garage Display</h3>
+        <p>
+          Six-tile touch controller for the garage, wired into Home Assistant.
+          Dark theme, big targets, and a touch calibration that took longer to
+          get right than the rest of it combined.
+        </p>
+        <div class="hw">ESP32-2432S028 · ESPHome</div>
+      </article>
+
+      <article class="build">
+        <div class="meta">Printer monitor · port</div>
+        <h3>BambuHelper, ported <span class="badge fork">port</span></h3>
+        <p>
+          Ported an existing Bambu printer monitor to a 480×480 Guition panel
+          and wrote a custom glance UI for it. Every colour rendered as a
+          photo negative — which turned out to be two unrelated bugs stacked
+          on top of each other, not one.
+        </p>
+        <div class="hw">Guition ESP32-S3-4848S040 · LovyanGFX</div>
+      </article>
+
+      <article class="build">
+        <div class="meta">Flight tracker · live</div>
+        <h3>ATC-Pi FlightTrackr</h3>
+        <p>
+          Calls out aircraft passing overhead, with audio alerts. The amplifier
+          is single-open, so a second process grabbing the audio device fails
+          completely silently — a fun one to chase.
+        </p>
+        <div class="hw">Compute Module 4 · MAX98357A</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================================================== ALSO IN THE RACK -->
+<section>
+  <div class="wrap">
+    <h2>Also in the rack</h2>
+    <ul class="rack">
+      <li><span class="name">Homelab API</span> One FastAPI service every display reads from, so nothing scrapes anything twice.</li>
+      <li><span class="name">CamHub</span> Multi-camera ESP32 grid on a Jetson Orin Nano.</li>
+      <li><span class="name">Jetson HUD</span> Ultrawide 1280×400 kiosk running on bare X11, no desktop.</li>
+      <li><span class="name">EE04 ePaper</span> 7.5-inch e-paper status board. Lives or dies on one inverted busy pin.</li>
+      <li><span class="name">Network segmentation</span> Flattened /24 split into four VLANs across UniFi, without breaking casting.</li>
+      <li><span class="name">Laser cutter node</span> Pi-driven print server and job spooler with its own little touchscreen.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================================================= HOW I WORK -->
+<section>
+  <div class="wrap">
+    <h2>How I work</h2>
+    <div class="cols">
+      <div>
+        <h3>Hands on</h3>
+        <ul>
+          <li>ESP32 / ESP-IDF / ESPHome / PlatformIO</li>
+          <li>Raspberry Pi, Jetson, Linux services</li>
+          <li>Python, FastAPI, C++, HTML/CSS/JS</li>
+          <li>MQTT, REST, Home Assistant</li>
+          <li>UniFi networking, VLANs, Docker</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Principles</h3>
+        <ul>
+          <li>Read the source before naming a cause</li>
+          <li>Separate what's verified from what's a hunch</li>
+          <li>One big number beats a wall of gauges</li>
+          <li>Plain language over vendor jargon</li>
+          <li>Slow is fine. Confidently wrong isn't.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== BACKGROUND
+     ⚠️  FILL THIS IN BEFORE YOU POINT THE DOMAIN AT IT.
+     I deliberately left this empty rather than invent job history for you.
+     Add roles as: <li><span class="name">Title, Company</span> Years — what you did.</li>
+     Then delete this comment and the placeholder below.
+================================================================== -->
+<section>
+  <div class="wrap">
+    <h2>Background</h2>
+    <ul class="rack">
+      <li><span class="name">[ Your role here ]</span> [ Company, years — one line on what you actually did. ]</li>
+      <li><span class="name">[ Previous role ]</span> [ Company, years — one line. ]</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================================================== CONTACT -->
+<section>
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="contact">
+      <a href="mailto:mr.erickuribe@gmail.com">mr.erickuribe@gmail.com</a>
+      <a href="https://github.com/Pencreus">github.com/Pencreus</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span id="stamp">Hand-written HTML. No trackers, no cookies, no CMS to rot.</span>
+  </div>
+</footer>
+
+</body>
+</html>

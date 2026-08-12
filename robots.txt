@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://erickuribe.com/sitemap.xml
