@@ -97,9 +97,8 @@ body {
   gap: 0.85rem;
   min-width: 0;
 }
-/* Nerd is the right-hand panel, so its copy hangs off the right edge —
-   mirror-symmetric with the Pro side. */
-.side.nerd .pitch { text-align: right; align-items: flex-end; }
+/* Both sides now run pitch-then-avatar — text hugs the seam, avatar sits
+   at the outer edge. Left-aligned reads naturally on both. */
 
 /* --------------------------------------------------------------- AVATARS */
 
@@ -117,9 +116,10 @@ body {
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: center; mask-position: center;
 }
-/* Both face the seam with no CSS flip. The Pro art is mirrored inside the
-   SVG (label counter-flipped so #81 still reads); the Nerd art already
-   gestures left, which is inward from the right-hand panel. */
+/* Neither needs a CSS flip. The Pro art is mirrored inside the SVG file
+   (label counter-flipped so #81 still reads) so he faces right, toward his
+   own pitch. The Nerd art gestures left natively — now sitting outside its
+   pitch, that same leftward point lands right back on the text. */
 .pro .avatar::before {
   background: var(--p-ink);
   -webkit-mask-image: url(assets/erick_pro.svg);
@@ -248,24 +248,15 @@ body {
 
 .side:focus-visible { outline: 4px solid var(--n-amber); outline-offset: -8px; }
 
-/* Stepped-fret (greca) seam, straight off the logo's pyramid band. */
-/* The line itself is painted by ::before. If the mask sat on .seamline it
-   would also clip the cartoon nested inside it. */
+/* Plain amber seam — a simple rule marking the boundary, no motif. */
 .seamline {
   position: absolute;
   left: 50%; top: 0; bottom: 0;
-  width: 22px;
+  width: 3px;
   transform: translateX(-50%);
   z-index: 2;
-}
-.seamline::before {
-  content: "";
-  position: absolute;
-  inset: 0;
   background: var(--n-amber);
   opacity: .85;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='48' viewBox='0 0 22 48'%3E%3Cpath d='M4 0v10h7V4h7v14h-7v12h7v14h-7v-6H4v10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-y center / 22px 48px;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='48' viewBox='0 0 22 48'%3E%3Cpath d='M4 0v10h7V4h7v14h-7v12h7v14h-7v-6H4v10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-y center / 22px 48px;
 }
 
 /* ---------------------------------------------------------------- FOOT */
@@ -295,13 +286,9 @@ footer a:hover { background: var(--n-amber); color: var(--p-ink); }
   .seamline {
     position: relative;   /* in-flow between the panels = the true boundary */
     left: auto; right: auto; top: auto; bottom: auto;
-    width: auto; height: 22px;
+    width: auto; height: 3px;
     transform: none;
     flex: none;
-  }
-  .seamline::before {
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
   }
 }
 

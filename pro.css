@@ -36,14 +36,6 @@ a { color: var(--terra); text-decoration: none; border-bottom: 1px solid current
 a:hover { background: var(--terra); color: var(--paper); border-color: var(--terra); }
 a:focus-visible { outline: 3px solid var(--jade); outline-offset: 2px; }
 
-/* Stepped-fret band, reused from the logo's pyramid course. */
-.greca {
-  height: 16px;
-  background: var(--terra);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 13h9V7H5V3h13v6h11V3h13v4h-4v6h10' fill='none' stroke='%23000' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x center / 48px 16px;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 13h9V7H5V3h13v6h11V3h13v4h-4v6h10' fill='none' stroke='%23000' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x center / 48px 16px;
-}
-
 /* ------------------------------------------------------------- TOPNAV */
 
 .topnav {
@@ -171,7 +163,7 @@ footer a:hover { background: var(--gold); color: var(--ink); }
 }
 
 @media print {
-  .topnav, .greca, footer { display: none; }
+  .topnav, footer { display: none; }
   body { background: #fff; }
   a { color: #000; }
 }
