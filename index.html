@@ -102,35 +102,12 @@
 
 <main class="split">
 
-  <!-- Nerd sits left and Pro right so each cartoon gestures INTO the seam.
-       Pro can't be mirrored (the #81 patch would read backwards), and he
-       leans left — which is only inward if he's on the right. -->
-
-  <!-- ============================================ NERD -->
-  <a class="side nerd" href="nerd.html">
-    <div class="pitch">
-      <div class="eyebrow">▸ The Nerd Side ▸</div>
-      <h2>Solder&nbsp;on,<br>lights&nbsp;green</h2>
-      <p class="blurb">
-        A rack in the garage, a dozen ESP32 panels, and a firmware bug that took
-        a 512-byte buffer to explain. Warning: contains oscilloscopes.
-      </p>
-      <ul>
-        <li>Builds</li>
-        <li>Homelab</li>
-        <li>War stories</li>
-      </ul>
-      <span class="enter">Enter the garage →</span>
-    </div>
-    <div class="avatar" aria-hidden="true"></div>
-  </a>
-
-  <!-- ============================================ SEAM -->
-  <div class="seamline" aria-hidden="true"></div>
+  <!-- Pro leads, left to right. Both cartoons gesture INTO the seam: the Pro
+       art is mirrored in the file itself, with the #81 patch counter-flipped
+       about its own centre so it still reads. -->
 
   <!-- ============================================= PRO -->
   <a class="side pro" href="pro.html">
-    <div class="avatar" aria-hidden="true"></div>
     <div class="pitch">
       <div class="eyebrow">◆ The Pro Side ◆</div>
       <h2>Suit&nbsp;on,<br>numbers&nbsp;up</h2>
@@ -145,6 +122,29 @@
         <li>Family</li>
       </ul>
       <span class="enter">Enter the office →</span>
+    </div>
+    <div class="avatar" aria-hidden="true"></div>
+  </a>
+
+  <!-- ============================================ SEAM -->
+  <div class="seamline" aria-hidden="true"></div>
+
+  <!-- ============================================ NERD -->
+  <a class="side nerd" href="nerd.html">
+    <div class="avatar" aria-hidden="true"></div>
+    <div class="pitch">
+      <div class="eyebrow">▸ The Nerd Side ▸</div>
+      <h2>Solder&nbsp;on,<br>lights&nbsp;green</h2>
+      <p class="blurb">
+        A rack in the garage, a dozen ESP32 panels, and a firmware bug that took
+        a 512-byte buffer to explain. Warning: contains oscilloscopes.
+      </p>
+      <ul>
+        <li>Builds</li>
+        <li>Homelab</li>
+        <li>War stories</li>
+      </ul>
+      <span class="enter">Enter the garage →</span>
     </div>
   </a>
 

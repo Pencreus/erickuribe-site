@@ -97,9 +97,9 @@ body {
   gap: 0.85rem;
   min-width: 0;
 }
-/* Pro is the right-hand panel now, so its copy hangs off the right edge —
-   mirror-symmetric with the Nerd side. */
-.side.pro .pitch { text-align: right; align-items: flex-end; }
+/* Nerd is the right-hand panel, so its copy hangs off the right edge —
+   mirror-symmetric with the Pro side. */
+.side.nerd .pitch { text-align: right; align-items: flex-end; }
 
 /* --------------------------------------------------------------- AVATARS */
 
@@ -117,8 +117,9 @@ body {
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: center; mask-position: center;
 }
-/* Pro is never flipped — the #81 patch would read backwards. He already
-   gestures toward his own copy, which is exactly what we want. */
+/* Both face the seam with no CSS flip. The Pro art is mirrored inside the
+   SVG (label counter-flipped so #81 still reads); the Nerd art already
+   gestures left, which is inward from the right-hand panel. */
 .pro .avatar::before {
   background: var(--p-ink);
   -webkit-mask-image: url(assets/erick_pro.svg);
@@ -126,7 +127,6 @@ body {
 }
 .nerd .avatar::before {
   background: var(--n-green);
-  transform: scaleX(-1);          /* point back at his own side */
   filter: drop-shadow(0 0 10px rgba(77,255,166,.35));
   -webkit-mask-image: url(assets/erick.svg);
           mask-image: url(assets/erick.svg);
@@ -140,9 +140,9 @@ body {
   width: 14px; height: 14px;
   border-radius: 50%;
 }
-.pro  .avatar::after { left: 2%;  background: var(--n-green);
+.pro  .avatar::after { right: 2%; background: var(--n-green);
                        box-shadow: 0 0 10px rgba(77,255,166,.7); }
-.nerd .avatar::after { right: 2%; background: var(--p-terra);
+.nerd .avatar::after { left: 2%;  background: var(--p-terra);
                        box-shadow: 0 0 10px rgba(184,72,42,.7); }
 
 /* Hovering one side gives it more room. Pure sugar, but it makes the
