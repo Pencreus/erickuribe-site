@@ -186,6 +186,9 @@ body {
 /* One cartoon, sliced down the middle: the pro half painted in ink on
    parchment, the nerd half in phosphor. The whole gag in one element. */
 
+/* The cartoon lives INSIDE the seam line, so it always lands on the real
+   boundary between the two panels — not on a 50% guess that drifts whenever
+   one side is taller than the other. */
 .seam {
   position: absolute;
   left: 50%; top: 50%;
@@ -206,16 +209,23 @@ body {
 .seam .half-nerd { background: var(--n-green); clip-path: inset(0 0 0 50%); }
 
 /* Stepped-fret (greca) seam, straight off the logo's pyramid band. */
+/* The line itself is painted by ::before. If the mask sat on .seamline it
+   would also clip the cartoon nested inside it. */
 .seamline {
   position: absolute;
   left: 50%; top: 0; bottom: 0;
   width: 22px;
   transform: translateX(-50%);
   z-index: 2;
+}
+.seamline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--n-amber);
+  opacity: .85;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='48' viewBox='0 0 22 48'%3E%3Cpath d='M4 0v10h7V4h7v14h-7v12h7v14h-7v-6H4v10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-y center / 22px 48px;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='48' viewBox='0 0 22 48'%3E%3Cpath d='M4 0v10h7V4h7v14h-7v12h7v14h-7v-6H4v10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-y center / 22px 48px;
-  opacity: .85;
 }
 
 /* ---------------------------------------------------------------- FOOT */
@@ -240,11 +250,18 @@ footer a:hover { background: var(--n-amber); color: var(--p-ink); }
 @media (max-width: 48rem) {
   .split { flex-direction: column; }
   .side  { flex: 1 1 auto; min-height: 44vh; gap: .7rem; }
+  /* Clear the seam so the split cartoon never sits on a button. */
+  .side.pro  { padding-bottom: 5.5rem; }
+  .side.nerd { padding-top: 5.5rem; }
   .seam  { width: 84px; }
   .seamline {
-    left: 0; right: 0; top: 50%; bottom: auto;
+    position: relative;   /* in-flow between the panels = the true boundary */
+    left: auto; right: auto; top: auto; bottom: auto;
     width: auto; height: 22px;
-    transform: translateY(-50%);
+    transform: none;
+    flex: none;
+  }
+  .seamline::before {
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
   }
