@@ -160,7 +160,7 @@ body {
     radial-gradient(circle at 20% 15%, rgba(184,72,42,.10), transparent 45%),
     radial-gradient(circle at 80% 85%, rgba(29,107,96,.12), transparent 50%);
 }
-/* Faint greca wash instead of a raster watermark — 0 bytes, same warmth. */
+/* Faint crosshatch wash instead of a raster watermark — 0 bytes, same warmth. */
 .side.pro::before {
   content: "";
   position: absolute;
