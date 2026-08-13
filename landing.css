@@ -75,18 +75,75 @@ body {
   position: relative;
 }
 
+/* Each side is a pitch plus the guy making it. They stand back-to-back at
+   the seam, each gesturing at his own half — the yin/yang read. */
 .side {
   flex: 1 1 50%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  gap: 0.9rem;
-  padding: clamp(1.75rem, 4vw, 3.5rem);
+  gap: clamp(0.5rem, 2vw, 1.75rem);
+  padding: clamp(1.5rem, 3.5vw, 3rem);
   text-decoration: none;
   position: relative;
   overflow: hidden;
   transition: flex-grow 0.45s cubic-bezier(.2,.8,.3,1);
 }
+
+.pitch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+/* Pro is the right-hand panel now, so its copy hangs off the right edge —
+   mirror-symmetric with the Nerd side. */
+.side.pro .pitch { text-align: right; align-items: flex-end; }
+
+/* --------------------------------------------------------------- AVATARS */
+
+.avatar {
+  flex: none;
+  width: clamp(96px, 15vw, 210px);
+  aspect-ratio: 600 / 802;
+  position: relative;
+}
+.avatar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+/* Pro is never flipped — the #81 patch would read backwards. He already
+   gestures toward his own copy, which is exactly what we want. */
+.pro .avatar::before {
+  background: var(--p-ink);
+  -webkit-mask-image: url(assets/erick_pro.svg);
+          mask-image: url(assets/erick_pro.svg);
+}
+.nerd .avatar::before {
+  background: var(--n-green);
+  transform: scaleX(-1);          /* point back at his own side */
+  filter: drop-shadow(0 0 10px rgba(77,255,166,.35));
+  -webkit-mask-image: url(assets/erick.svg);
+          mask-image: url(assets/erick.svg);
+}
+
+/* The yin/yang eye: each figure carries a dot of the other world. */
+.avatar::after {
+  content: "";
+  position: absolute;
+  bottom: 4%;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+}
+.pro  .avatar::after { left: 2%;  background: var(--n-green);
+                       box-shadow: 0 0 10px rgba(77,255,166,.7); }
+.nerd .avatar::after { right: 2%; background: var(--p-terra);
+                       box-shadow: 0 0 10px rgba(184,72,42,.7); }
 
 /* Hovering one side gives it more room. Pure sugar, but it makes the
    choice feel like a choice. */
@@ -191,32 +248,6 @@ body {
 
 .side:focus-visible { outline: 4px solid var(--n-amber); outline-offset: -8px; }
 
-/* --------------------------------------------------- THE SPLIT AVATAR */
-/* One cartoon, sliced down the middle: the pro half painted in ink on
-   parchment, the nerd half in phosphor. The whole gag in one element. */
-
-/* The cartoon lives INSIDE the seam line, so it always lands on the real
-   boundary between the two panels — not on a 50% guess that drifts whenever
-   one side is taller than the other. */
-.seam {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(88px, 13vw, 170px);
-  aspect-ratio: 600 / 800;
-  z-index: 3;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 14px rgba(0,0,0,.45));
-}
-.seam span {
-  position: absolute;
-  inset: 0;
-  -webkit-mask: url(assets/erick.svg) center/contain no-repeat;
-          mask: url(assets/erick.svg) center/contain no-repeat;
-}
-.seam .half-pro  { background: var(--p-ink);   clip-path: inset(0 50% 0 0); }
-.seam .half-nerd { background: var(--n-green); clip-path: inset(0 0 0 50%); }
-
 /* Stepped-fret (greca) seam, straight off the logo's pyramid band. */
 /* The line itself is painted by ::before. If the mask sat on .seamline it
    would also clip the cartoon nested inside it. */
@@ -258,11 +289,9 @@ footer a:hover { background: var(--n-amber); color: var(--p-ink); }
 
 @media (max-width: 48rem) {
   .split { flex-direction: column; }
-  .side  { flex: 1 1 auto; min-height: 44vh; gap: .7rem; }
-  /* Clear the seam so the split cartoon never sits on a button. */
-  .side.pro  { padding-bottom: 5.5rem; }
-  .side.nerd { padding-top: 5.5rem; }
-  .seam  { width: 84px; }
+  .side  { flex: 1 1 auto; min-height: 42vh; gap: .9rem; padding: 1.75rem 1.25rem; }
+  .avatar { width: clamp(84px, 24vw, 140px); }
+  .avatar::after { width: 10px; height: 10px; }
   .seamline {
     position: relative;   /* in-flow between the panels = the true boundary */
     left: auto; right: auto; top: auto; bottom: auto;
@@ -274,8 +303,6 @@ footer a:hover { background: var(--n-amber); color: var(--p-ink); }
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cpath d='M0 18h10v-7h-6v-7h14v7h12v-7h14v7h-6v10h10' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x center / 48px 22px;
   }
-  .seam .half-pro  { clip-path: inset(0 0 50% 0); }
-  .seam .half-nerd { clip-path: inset(50% 0 0 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

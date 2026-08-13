@@ -102,45 +102,50 @@
 
 <main class="split">
 
-  <!-- ============================================= PRO -->
-  <a class="side pro" href="pro.html">
-    <div class="eyebrow">◆ The Pro Side ◆</div>
-    <h2>Suit&nbsp;on,<br>numbers&nbsp;up</h2>
-    <p class="blurb">
-      National account manager at Amazon. Twenty-seven years running retail
-      floors, fulfillment operations and national accounts — and the family
-      that all of it is actually for.
-    </p>
-    <ul>
-      <li>Résumé</li>
-      <li>About me</li>
-      <li>Family</li>
-    </ul>
-    <span class="enter">Enter the office →</span>
-  </a>
-
-  <!-- ============================================ SEAM -->
-  <div class="seamline" aria-hidden="true">
-    <div class="seam">
-      <span class="half-pro"></span>
-      <span class="half-nerd"></span>
-    </div>
-  </div>
+  <!-- Nerd sits left and Pro right so each cartoon gestures INTO the seam.
+       Pro can't be mirrored (the #81 patch would read backwards), and he
+       leans left — which is only inward if he's on the right. -->
 
   <!-- ============================================ NERD -->
   <a class="side nerd" href="nerd.html">
-    <div class="eyebrow">▸ The Nerd Side ▸</div>
-    <h2>Solder&nbsp;on,<br>lights&nbsp;green</h2>
-    <p class="blurb">
-      A rack in the garage, a dozen ESP32 panels, and a firmware bug that took
-      a 512-byte buffer to explain. Warning: contains oscilloscopes.
-    </p>
-    <ul>
-      <li>Builds</li>
-      <li>Homelab</li>
-      <li>War stories</li>
-    </ul>
-    <span class="enter">Enter the garage →</span>
+    <div class="pitch">
+      <div class="eyebrow">▸ The Nerd Side ▸</div>
+      <h2>Solder&nbsp;on,<br>lights&nbsp;green</h2>
+      <p class="blurb">
+        A rack in the garage, a dozen ESP32 panels, and a firmware bug that took
+        a 512-byte buffer to explain. Warning: contains oscilloscopes.
+      </p>
+      <ul>
+        <li>Builds</li>
+        <li>Homelab</li>
+        <li>War stories</li>
+      </ul>
+      <span class="enter">Enter the garage →</span>
+    </div>
+    <div class="avatar" aria-hidden="true"></div>
+  </a>
+
+  <!-- ============================================ SEAM -->
+  <div class="seamline" aria-hidden="true"></div>
+
+  <!-- ============================================= PRO -->
+  <a class="side pro" href="pro.html">
+    <div class="avatar" aria-hidden="true"></div>
+    <div class="pitch">
+      <div class="eyebrow">◆ The Pro Side ◆</div>
+      <h2>Suit&nbsp;on,<br>numbers&nbsp;up</h2>
+      <p class="blurb">
+        National account manager at Amazon. Twenty-seven years running retail
+        floors, fulfillment operations and national accounts — and the family
+        that all of it is actually for.
+      </p>
+      <ul>
+        <li>Résumé</li>
+        <li>About me</li>
+        <li>Family</li>
+      </ul>
+      <span class="enter">Enter the office →</span>
+    </div>
   </a>
 
 </main>
