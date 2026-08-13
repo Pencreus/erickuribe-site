@@ -48,15 +48,23 @@ body {
   background: var(--p-bg);
   border-bottom: 3px solid var(--p-ink);
   text-align: center;
-  padding: 0;
-  line-height: 0;
+  padding: 1.1rem 1.25rem 0.9rem;
+  color: var(--p-ink);          /* the mark is all currentColor */
 }
-.brandbar img {
+.mark {
   width: 100%;
-  max-width: 940px;
+  max-width: 860px;
   height: auto;
   display: inline-block;
 }
+/* Text inside the inlined mark. Kept here so the wordmark uses the same
+   font stack as the rest of the page. */
+.mk-t, .mk-l, .mk-rev {
+  fill: currentColor; stroke: none;
+  font-family: var(--slab); font-weight: 800;
+}
+.mk-l   { font-size: 26px; letter-spacing: 2px; }
+.mk-rev { fill: var(--p-bg); }   /* reversed out of the solid bar */
 
 /* ----------------------------------------------------------- THE SPLIT */
 
@@ -95,17 +103,18 @@ body {
     radial-gradient(circle at 20% 15%, rgba(184,72,42,.10), transparent 45%),
     radial-gradient(circle at 80% 85%, rgba(29,107,96,.12), transparent 50%);
 }
-.side.pro::before {  /* faint sunstone watermark */
+/* Faint greca wash instead of a raster watermark — 0 bytes, same warmth. */
+.side.pro::before {
   content: "";
   position: absolute;
-  right: -12%; top: 50%;
-  width: 62%; aspect-ratio: 1;
-  transform: translateY(-50%);
-  background: var(--p-ink);
-  opacity: .045;
-  -webkit-mask: url(assets/pencreus-seal.jpg) center/contain no-repeat;
-          mask: url(assets/pencreus-seal.jpg) center/contain no-repeat;
+  inset: 0;
+  opacity: .05;
   pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg,
+      var(--p-ink) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg,
+      var(--p-ink) 0 2px, transparent 2px 22px);
 }
 
 /* -- NERD -- */

@@ -19,9 +19,93 @@
 </head>
 <body>
 
+<!-- The mark is inlined rather than linked so currentColor works — an
+     external <img>/<object> can't inherit colour from this page. 5 KB. -->
 <div class="brandbar">
-  <img src="assets/pencreus-banner.jpg"
-       alt="The Pencreus — Hecho in Mexico, Raised in the US. Est. 1981.">
+<svg class="mark" viewBox="0 0 1200 372" role="img" aria-labelledby="mktitle"
+     fill="none" stroke="currentColor" stroke-width="3"
+     stroke-linecap="square" stroke-linejoin="miter">
+  <title id="mktitle">The Pencreus — Hecho in Mexico, Raised in the US. Est. 1981.</title>
+  <defs>
+    <pattern id="greca" width="48" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 13h9V7H5V3h13v6h11V3h13v4h-4v6h10" stroke-width="2.5"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0"   width="1200" height="16" fill="url(#greca)" stroke="none"/>
+  <rect x="0" y="356" width="1200" height="16" fill="url(#greca)" stroke="none"/>
+
+  <!-- LEFT — heritage, as codex-style glyph blocks (the idea, not a transcription) -->
+  <g stroke-width="2">
+    <rect x="40"  y="96"  width="46" height="46"/><path d="M52 108h22M52 118h22M52 128h12"/>
+    <rect x="100" y="96"  width="46" height="46"/><path d="M112 108l22 22M134 108l-22 22"/>
+    <rect x="40"  y="156" width="46" height="46"/>
+    <circle cx="63" cy="179" r="12"/><circle cx="63" cy="179" r="4" fill="currentColor" stroke="none"/>
+    <rect x="100" y="156" width="46" height="46"/><path d="M112 190v-18h10v-10h12v28"/>
+    <rect x="40"  y="216" width="46" height="46"/><path d="M52 228h22v10h-10v14"/>
+    <rect x="100" y="216" width="46" height="46"/><path d="M112 254l11-26 11 26z"/>
+  </g>
+  <text class="mk-l" x="172" y="170">HECHO IN</text>
+  <text class="mk-l" x="172" y="206">MEXICO</text>
+  <path d="M172 224h150" stroke-width="4"/>
+
+  <!-- heritage wired into the circuitry -->
+  <g stroke-width="2">
+    <path d="M330 180h40v-52h60"/><path d="M330 200h58v54h42"/><path d="M330 190h26"/>
+    <circle cx="330" cy="180" r="5" fill="currentColor" stroke="none"/>
+    <circle cx="330" cy="200" r="5" fill="currentColor" stroke="none"/>
+    <circle cx="356" cy="190" r="5" fill="currentColor" stroke="none"/>
+  </g>
+
+  <!-- CENTRE — sunstone ring with an atom in it -->
+  <circle cx="600" cy="76" r="44"/>
+  <circle cx="600" cy="76" r="34" stroke-width="2"/>
+  <g stroke-width="2">
+    <ellipse cx="600" cy="76" rx="27" ry="10"/>
+    <ellipse cx="600" cy="76" rx="27" ry="10" transform="rotate(60 600 76)"/>
+    <ellipse cx="600" cy="76" rx="27" ry="10" transform="rotate(-60 600 76)"/>
+    <path d="M600 32v-10M600 120v10M556 76h-10M644 76h10M569 45l-7-7M631 45l7-7M569 107l-7 7M631 107l7 7"/>
+  </g>
+  <circle cx="600" cy="76" r="5" fill="currentColor" stroke="none"/>
+
+  <!-- stepped platform -->
+  <path d="M412 300h376"/>
+  <path d="M432 300v-22h336v22"/>
+  <path d="M460 278v-22h280v22"/>
+  <path d="M488 256v-24h224v24"/>
+  <g stroke-width="2">
+    <path d="M576 300v-68h48v68M576 278h48M576 256h48"/>
+  </g>
+
+  <!-- wordmark plaque -->
+  <rect x="444" y="130" width="312" height="98" stroke-width="4"/>
+  <rect x="454" y="140" width="292" height="78" stroke-width="2"/>
+  <text class="mk-t" x="600" y="172" text-anchor="middle" font-size="30" letter-spacing="6">THE</text>
+  <text class="mk-t" x="600" y="210" text-anchor="middle" font-size="42" letter-spacing="1">PENCREUS</text>
+
+  <!-- EST. 1981, reversed out of a solid bar -->
+  <rect x="516" y="312" width="168" height="30" fill="currentColor" stroke="none"/>
+  <text class="mk-rev" x="600" y="334" text-anchor="middle" font-size="20" letter-spacing="4">EST. 1981</text>
+
+  <!-- RIGHT — raised here, as component symbols -->
+  <g stroke-width="2">
+    <path d="M870 180h-40v-52h-60"/><path d="M870 200h-58v54h-42"/><path d="M870 190h-26"/>
+    <circle cx="870" cy="180" r="5" fill="currentColor" stroke="none"/>
+    <circle cx="870" cy="200" r="5" fill="currentColor" stroke="none"/>
+    <circle cx="844" cy="190" r="5" fill="currentColor" stroke="none"/>
+  </g>
+  <text class="mk-l" x="878" y="170">RAISED</text>
+  <text class="mk-l" x="878" y="206">IN THE US</text>
+  <path d="M878 224h150" stroke-width="4"/>
+  <g stroke-width="2">
+    <path d="M1054 110h14l6-12 12 24 12-24 12 24 6-12h14"/>
+    <path d="M1054 160h30M1084 146v28M1096 146v28M1096 160h30"/>
+    <rect x="1054" y="196" width="72" height="46"/>
+    <path d="M1054 208h-12M1054 220h-12M1054 232h-12M1126 208h12M1126 220h12M1126 232h12"/>
+    <circle cx="1072" cy="210" r="5" fill="currentColor" stroke="none"/>
+    <path d="M1054 272h10a9 9 0 0 1 18 0 9 9 0 0 1 18 0 9 9 0 0 1 18 0h8"/>
+  </g>
+</svg>
 </div>
 
 <main class="split">
