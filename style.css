@@ -13,6 +13,8 @@
   --green-mut: #8fbfa4;  /* body copy — still ~7:1 on --bg */
   --amber:     #ffc857;  /* highlights, "the good part" */
   --red:       #ff6b6b;  /* failure states in war stories */
+  --cyan:      #4de8ff;  /* section labels, hardware lines */
+  --magenta:   #ff6bc4;  /* category tags */
 
   --edge:      #1d2f24;
   --glow:      0 0 6px rgba(77, 255, 166, 0.35);
@@ -425,4 +427,54 @@ footer {
   a { color: #000; }
   h1, h2, h3, .mark { color: #000; text-shadow: none; filter: none; }
   .featured, .build, .trace { border-color: #999; background: #fff; }
+}
+
+/* ================================================================
+   THE SPLIT — added when the site became two rooms.
+   More colour, per request: cyan and magenta join the phosphor.
+   ================================================================ */
+
+.topnav {
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--edge);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+.topnav .wrap {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding-top: 0.6rem; padding-bottom: 0.6rem; flex-wrap: wrap;
+}
+.topnav a { color: var(--cyan); border-bottom-color: var(--cyan); }
+.topnav a:hover { background: var(--cyan); color: var(--bg); }
+.flip { color: #b8482a !important; border-bottom-color: #b8482a !important; }
+.flip:hover { background: #b8482a !important; color: #f2e9db !important; }
+
+/* Section labels and hardware lines pick up cyan; category tags magenta.
+   Keeps the page unmistakably CRT while giving the eye more to sort by. */
+h2               { color: var(--cyan); }
+h2::before       { content: "── "; color: var(--green-dim); }
+.build .meta     { color: var(--magenta); }
+.build .hw       { color: var(--cyan); opacity: .85; }
+.cols li::before { color: var(--magenta); }
+.badge           { color: var(--cyan); border-color: var(--cyan); }
+
+.aside {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--green-dim);
+  text-transform: uppercase;
+}
+.aside a { color: var(--amber); border-bottom-color: var(--amber); }
+.aside a:hover { background: var(--amber); color: var(--bg); }
+
+/* A little chromatic-aberration on the name, like a misconverged CRT. */
+header h1 {
+  text-shadow:
+    0 0 6px rgba(77,255,166,.35),
+   -1.5px 0 0 rgba(255,107,196,.55),
+    1.5px 0 0 rgba(77,232,255,.55);
 }

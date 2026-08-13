@@ -3,357 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Erick Uribe — builds things that glow in racks</title>
-<meta name="description" content="Erick Uribe — national account manager at Amazon, and the person who builds rack-mounted Pi HUDs and ESP32 display controllers on the weekends. Southern California.">
+<title>Erick Uribe — pick a side</title>
+<meta name="description" content="Erick Uribe: national account manager by day, builder of glowing rack-mounted things by night. Hecho in Mexico, raised in the US. Pick a side.">
 <meta name="theme-color" content="#070b08">
 
-<!-- Social preview -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://erickuribe.com/">
-<meta property="og:title" content="Erick Uribe — builds things that glow in racks">
-<meta property="og:description" content="Account management and retail operations by day. Rack-mounted Pi HUDs and ESP32 controllers the rest of the time.">
-<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Erick Uribe — pick a side">
+<meta property="og:description" content="The Pro Side or the Nerd Side. Same guy, two very different rooms.">
+<meta name="twitter:card" content="summary_large_image">
 
-<!-- Favicon: the phosphor block cursor -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23070b08'/><rect x='8' y='6' width='16' height='20' fill='%234dffa6'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='16' height='32' fill='%23f2e9db'/><rect x='16' width='16' height='32' fill='%23070b08'/><rect x='14' width='4' height='32' fill='%23ffc857'/></svg>">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
 </head>
 <body>
 
-<a class="skip" href="#builds">Skip to builds</a>
+<div class="brandbar">
+  <img src="assets/pencreus-banner.jpg"
+       alt="The Pencreus — Hecho in Mexico, Raised in the US. Est. 1981.">
+</div>
 
-<header>
-  <div class="wrap">
-    <div class="statusbar">
-      <span class="live"><span class="dot"></span>Rack online</span>
-      <span>Southern California</span>
-      <span>Est. uptime: still going</span>
-    </div>
+<main class="split">
 
-    <div class="masthead">
-      <div class="mark" role="img" aria-label="Cartoon portrait of Erick Uribe"></div>
-      <div>
-        <h1>Erick Uribe</h1>
-        <p class="tagline">Builds things that glow in racks<span class="cursor"></span></p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main>
-
-<!-- ============================================================= LEAD -->
-<section>
-  <div class="wrap">
-    <!-- "since 1999" rather than a year count on purpose — a number would need
-         bumping every January, and this site is meant to survive neglect. -->
-    <p class="lead">
-      Retail operations and national accounts since 1999.
-      Nights and weekends, a rack in the garage and a
-      <strong>refusal to guess at root cause</strong>.
+  <!-- ============================================= PRO -->
+  <a class="side pro" href="pro.html">
+    <div class="eyebrow">◆ The Pro Side ◆</div>
+    <h2>Suit&nbsp;on,<br>numbers&nbsp;up</h2>
+    <p class="blurb">
+      National account manager at Amazon. Twenty-seven years running retail
+      floors, fulfillment operations and national accounts — and the family
+      that all of it is actually for.
     </p>
-  </div>
-</section>
-
-<!-- =========================================================== BUILDS -->
-<section id="builds">
-  <div class="wrap">
-    <h2>Selected builds</h2>
-
-    <!-- The war story. This is the one that shows how I actually work. -->
-    <article class="featured">
-      <h3>NerdMiner V2 — REST API fork <span class="badge fork">fork</span></h3>
-      <p>
-        Forked the NerdMiner firmware to expose a REST API, so a shelf of ESP32
-        miners could be herded from one controller instead of poked at one
-        screen at a time. Then the interesting part: on DigiByte, every single
-        share came back rejected.
-      </p>
-
-      <div class="trace"><span class="bad">shares accepted ........ 0 / 32</span>
-<span class="bad">pool response .......... rejected (invalid)</span>
-
-  bitcoin coinbase ..... 312 chars   ok
-  <span class="key">digibyte coinbase .... 524 chars   ← does not fit</span>
-  <span class="key">utils.cpp ............ char coinbase_buffer[512]</span>
-
-  silently truncated → malformed share → 100% reject
-
-<span class="good">buffer 512 → 1024</span>
-<span class="good">shares accepted ....... 20 / 20</span></div>
-
-      <p>
-        A fixed 512-byte buffer in <code>utils.cpp</code> was truncating
-        DigiByte's longer coinbase without complaining. Nothing logged an
-        error — the miner cheerfully submitted garbage. Reading both sides of
-        the protocol end-to-end found it; guessing at pool settings never
-        would have.
-      </p>
-    </article>
-
-    <div class="builds">
-
-      <article class="build">
-        <div class="meta">Dashboard · live</div>
-        <h3>Homelab HUD</h3>
-        <p>
-          A 1U rack-mounted status screen. Three pages of retro CRT dashboard
-          covering the network, the servers, and a crypto page, driven off a
-          shared internal API.
-        </p>
-        <div class="hw">Raspberry Pi 5 · kiosk browser</div>
-      </article>
-
-      <article class="build">
-        <div class="meta">Weather station · open source</div>
-        <h3>The Pencreus</h3>
-        <p>
-          Retro terminal weather station on a reflective LCD — the panel is
-          readable in direct sun and sips power. Home of the mascot art,
-          including the portrait up top.
-        </p>
-        <div class="hw">
-          Waveshare ESP32-S3-RLCD-4.2 ·
-          <a href="https://github.com/Pencreus/ESP32-RLCD">source</a>
-        </div>
-      </article>
-
-      <article class="build">
-        <div class="meta">Kitchen companion · live</div>
-        <h3>Kitchen HUD</h3>
-        <p>
-          A 5-inch wall companion with seven screens — weather, calendar,
-          transit, printers — built glance-first, so the thing you need is
-          the biggest thing on screen.
-        </p>
-        <div class="hw">ESP32-8048S050 · 800×480 touch</div>
-      </article>
-
-      <article class="build">
-        <div class="meta">Home control · live</div>
-        <h3>Garage Display</h3>
-        <p>
-          Six-tile touch controller for the garage, wired into Home Assistant.
-          Dark theme, big targets, and a touch calibration that took longer to
-          get right than the rest of it combined.
-        </p>
-        <div class="hw">ESP32-2432S028 · ESPHome</div>
-      </article>
-
-      <article class="build">
-        <div class="meta">Printer monitor · port</div>
-        <h3>BambuHelper, ported <span class="badge fork">port</span></h3>
-        <p>
-          Ported an existing Bambu printer monitor to a 480×480 Guition panel
-          and wrote a custom glance UI for it. Every colour rendered as a
-          photo negative — which turned out to be two unrelated bugs stacked
-          on top of each other, not one.
-        </p>
-        <div class="hw">Guition ESP32-S3-4848S040 · LovyanGFX</div>
-      </article>
-
-      <article class="build">
-        <div class="meta">Flight tracker · live</div>
-        <h3>ATC-Pi FlightTrackr</h3>
-        <p>
-          Calls out aircraft passing overhead, with audio alerts. The amplifier
-          is single-open, so a second process grabbing the audio device fails
-          completely silently — a fun one to chase.
-        </p>
-        <div class="hw">Compute Module 4 · MAX98357A</div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- =================================================== ALSO IN THE RACK -->
-<section>
-  <div class="wrap">
-    <h2>Also in the rack</h2>
-    <ul class="rack">
-      <li><span class="name">Homelab API</span> One FastAPI service every display reads from, so nothing scrapes anything twice.</li>
-      <li><span class="name">CamHub</span> Multi-camera ESP32 grid on a Jetson Orin Nano.</li>
-      <li><span class="name">Jetson HUD</span> Ultrawide 1280×400 kiosk running on bare X11, no desktop.</li>
-      <li><span class="name">EE04 ePaper</span> 7.5-inch e-paper status board. Lives or dies on one inverted busy pin.</li>
-      <li><span class="name">Network segmentation</span> Flattened /24 split into four VLANs across UniFi, without breaking casting.</li>
-      <li><span class="name">Laser cutter node</span> Pi-driven print server and job spooler with its own little touchscreen.</li>
+    <ul>
+      <li>Résumé</li>
+      <li>About me</li>
+      <li>Family</li>
     </ul>
+    <span class="enter">Enter the office →</span>
+  </a>
+
+  <!-- ============================================ SEAM -->
+  <div class="seamline" aria-hidden="true"></div>
+  <div class="seam" aria-hidden="true">
+    <span class="half-pro"></span>
+    <span class="half-nerd"></span>
   </div>
-</section>
 
-<!-- ======================================================= HOW I WORK -->
-<section>
-  <div class="wrap">
-    <h2>How I work</h2>
-    <div class="cols">
-      <div>
-        <h3>In the day job</h3>
-        <ul>
-          <li>National account management</li>
-          <li>Retail and fulfillment operations</li>
-          <li>Team leadership, hiring and training</li>
-          <li>Cross-functional programs</li>
-          <li>Budget management, market analysis</li>
-        </ul>
-      </div>
-      <div>
-        <h3>In the garage</h3>
-        <ul>
-          <li>ESP32 / ESP-IDF / ESPHome / PlatformIO</li>
-          <li>Raspberry Pi, Jetson, Linux services</li>
-          <li>Python, FastAPI, C++, HTML/CSS/JS</li>
-          <li>MQTT, REST, Home Assistant</li>
-          <li>UniFi networking, VLANs, Docker</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Either way</h3>
-        <ul>
-          <li>Read the source before naming a cause</li>
-          <li>Separate what's verified from what's a hunch</li>
-          <li>One big number beats a wall of gauges</li>
-          <li>Plain language over vendor jargon</li>
-          <li>Slow is fine. Confidently wrong isn't.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================== BACKGROUND
-     Condensed from the full resume. Deliberately no phone number and no
-     home city — region only. Add or trim roles as <div class="role"> blocks.
-================================================================== -->
-<section>
-  <div class="wrap">
-    <h2>Background</h2>
-
-    <div class="role">
-      <div class="when">2021 — present</div>
-      <div class="what">
-        <h3>National Account Manager <span class="org">· Amazon Device Sales</span></h3>
-        <p>
-          New business development, bringing first- and second-party devices
-          into the bulk sales channel. Coordinates across demand planning,
-          finance, legal, marketing and tech.
-          <strong>+163% year-over-year growth.</strong>
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2020 — 2021</div>
-      <div class="what">
-        <h3>Device Area Manager <span class="org">· Amazon Field Sales</span></h3>
-        <p>
-          Ran offline retail for Amazon, eero, Ring and Blink across Southern
-          California — six direct market managers into Best Buy, Target, Home
-          Depot, Lowe's and Kohl's. Held recommendation rates up through the
-          pandemic, and launched the field sales newsletter and a formal
-          diversity, equity and inclusion program.
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2019 — 2020</div>
-      <div class="what">
-        <h3>Area Manager II <span class="org">· Amazon Fulfillment</span></h3>
-        <p>
-          Launched a fulfillment center concept that had never existed before:
-          400,000 square feet, over a million cubic feet of storage, running
-          inbound, outbound, inventory, quality and learning. Wrote the daily
-          and weekly processes the site ran on, and hired and trained the
-          second leadership team in one week to hit a fixed start date.
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2017 — 2019</div>
-      <div class="what">
-        <h3>Senior Retail Experience Manager <span class="org">· Amazon Pop-Up</span></h3>
-        <p>
-          Opened three physical stores from the ground up — smart home
-          experiences built around Alexa and third-party products.
-          <strong>Number one store by volume one month after launch</strong>,
-          at near-perfect NPS.
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2015 — 2017</div>
-      <div class="what">
-        <h3>Store Manager, then District Business Specialist <span class="org">· T-Mobile</span></h3>
-        <p>
-          Twelve staff in a high-volume corporate store, promoted to a
-          "Must Win" location within six months. Before that, B2B sales
-          training across ten stores and 200+ employees — a rebuilt onboarding
-          process lifted new hires <strong>24% above tenured reps</strong>.
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">2012 — 2015</div>
-      <div class="what">
-        <h3>Regional Account Manager <span class="org">· VHA</span></h3>
-        <p>
-          70+ independent prepaid wireless retailers across three western
-          territories — sales, finance and audit compliance.
-          <strong>+8% market share in Las Vegas in four months.</strong>
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">1999 — 2012</div>
-      <div class="what">
-        <h3>Store Management <span class="org">· big-box retail and wireless</span></h3>
-        <p>
-          Thirteen years running big-box retail stores and wireless stores —
-          the floor-level operations experience everything above is built on.
-        </p>
-      </div>
-    </div>
-
-    <div class="role">
-      <div class="when">Education</div>
-      <div class="what">
-        <h3>BA, Business Administration <span class="org">· Cal State San Bernardino</span></h3>
-        <p>College of Business and Public Administration. English and Spanish.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ========================================================== CONTACT -->
-<section>
-  <div class="wrap">
-    <h2>Elsewhere</h2>
-    <!-- rel="me" links these profiles back to this domain as one identity. -->
-    <p class="contact">
-      <a rel="me" href="https://www.linkedin.com/in/erickuribe/">LinkedIn</a>
-      <a rel="me" href="https://www.instagram.com/pencreus/">Instagram</a>
-      <a rel="me" href="https://github.com/Pencreus">GitHub</a>
+  <!-- ============================================ NERD -->
+  <a class="side nerd" href="nerd.html">
+    <div class="eyebrow">▸ The Nerd Side ▸</div>
+    <h2>Solder&nbsp;on,<br>lights&nbsp;green</h2>
+    <p class="blurb">
+      A rack in the garage, a dozen ESP32 panels, and a firmware bug that took
+      a 512-byte buffer to explain. Warning: contains oscilloscopes.
     </p>
-    <p class="fineprint">
-      No email, no phone number, no home address on here — by design.
-      Reach me through one of the above.
-    </p>
-  </div>
-</section>
+    <ul>
+      <li>Builds</li>
+      <li>Homelab</li>
+      <li>War stories</li>
+    </ul>
+    <span class="enter">Enter the garage →</span>
+  </a>
 
 </main>
 
 <footer>
-  <div class="wrap">
-    <span id="stamp">Hand-written HTML. No trackers, no cookies, no CMS to rot.</span>
-  </div>
+  <span>Hecho in Mexico · Raised in the US · Est. 1981</span>
+  <span>
+    <a href="https://www.linkedin.com/in/erickuribe/">LinkedIn</a> ·
+    <a href="https://www.instagram.com/pencreus/">Instagram</a> ·
+    <a href="https://github.com/Pencreus">GitHub</a>
+  </span>
 </footer>
 
 </body>

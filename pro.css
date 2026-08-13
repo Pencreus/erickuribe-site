@@ -1,0 +1,175 @@
+/* ------------------------------------------------------------------
+   The Pro Side — parchment and letterpress, drawn from the Pencreus art.
+   Warm Mesoamerican palette: terracotta, jade, gold on aged paper.
+   ------------------------------------------------------------------ */
+
+:root {
+  --bg:     #f2e9db;
+  --paper:  #fbf6ec;
+  --band:   #e5d8c2;
+  --ink:    #1c1714;
+  --mut:    #6b5c4c;
+  --terra:  #b8482a;
+  --jade:   #1d6b60;
+  --gold:   #b8840f;
+
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --wrap: 60rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: var(--terra); text-decoration: none; border-bottom: 1px solid currentColor; }
+a:hover { background: var(--terra); color: var(--paper); border-color: var(--terra); }
+a:focus-visible { outline: 3px solid var(--jade); outline-offset: 2px; }
+
+/* Stepped-fret band, reused from the logo's pyramid course. */
+.greca {
+  height: 16px;
+  background: var(--terra);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 13h9V7H5V3h13v6h11V3h13v4h-4v6h10' fill='none' stroke='%23000' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x center / 48px 16px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 13h9V7H5V3h13v6h11V3h13v4h-4v6h10' fill='none' stroke='%23000' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x center / 48px 16px;
+}
+
+/* ------------------------------------------------------------- TOPNAV */
+
+.topnav {
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.topnav .wrap {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding-top: .6rem; padding-bottom: .6rem; flex-wrap: wrap;
+}
+.topnav a { color: var(--bg); border-bottom-color: rgba(242,233,219,.4); }
+.topnav a:hover { background: var(--gold); color: var(--ink); }
+.flip { color: #4dffa6 !important; border-bottom-color: #4dffa6 !important; }
+.flip:hover { background: #4dffa6 !important; color: #070b08 !important; }
+
+/* --------------------------------------------------------------- HERO */
+
+header.hero { background: var(--paper); padding: 3rem 0 2.5rem; }
+.hero .wrap { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+
+.portrait {
+  width: 120px; flex: none;
+  aspect-ratio: 600 / 800;
+  background-color: var(--ink);
+  -webkit-mask: url(assets/erick.svg) center/contain no-repeat;
+          mask: url(assets/erick.svg) center/contain no-repeat;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1; margin: 0;
+  letter-spacing: -.03em; text-transform: uppercase; font-weight: 800;
+}
+.role {
+  margin: .5rem 0 0; font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: var(--jade); font-weight: 600;
+}
+.where {
+  margin: .35rem 0 0; font-family: var(--mono);
+  font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--mut);
+}
+
+/* ------------------------------------------------------------ SECTION */
+
+section { padding: 2.75rem 0; border-bottom: 1px solid var(--band); }
+section:last-of-type { border-bottom: 0; }
+
+h2 {
+  font-family: var(--mono);
+  font-size: .78rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--terra); margin: 0 0 1.5rem; font-weight: 700;
+}
+h3 { font-size: 1.05rem; margin: 0 0 .35rem; font-weight: 700; }
+p  { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+.intro { font-size: clamp(1.05rem, 2.3vw, 1.3rem); line-height: 1.55; max-width: 46ch; }
+.intro strong { color: var(--terra); }
+
+/* --------------------------------------------------------------- ROLE */
+
+.role-row {
+  display: grid; grid-template-columns: 10rem 1fr; gap: 0 2rem;
+  padding: 1.35rem 0; border-bottom: 1px dashed var(--band);
+}
+.role-row:last-child { border-bottom: 0; }
+.when {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--mut); padding-top: .3rem;
+}
+.org { color: var(--jade); font-weight: 600; font-size: .92rem; }
+.role-row p { font-size: .93rem; margin: 0; color: #3b322a; }
+.role-row strong { color: var(--terra); }
+
+/* -------------------------------------------------------------- CARDS */
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem,1fr)); gap: 1.25rem; }
+.card {
+  background: var(--paper);
+  border: 1px solid var(--band);
+  border-top: 4px solid var(--gold);
+  padding: 1.25rem;
+}
+.card h3 { color: var(--jade); }
+.card p { font-size: .9rem; color: var(--mut); }
+
+/* -------------------------------------------------------------- SKILLS */
+
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; }
+.chips li {
+  font-family: var(--mono); font-size: .76rem;
+  border: 1px solid var(--jade); color: var(--jade);
+  padding: .3rem .7rem; border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------- TODO */
+
+.todo {
+  color: #8c2f1f; border: 2px dashed #8c2f1f;
+  padding: .85rem 1rem; font-family: var(--mono); font-size: .85rem;
+  background: #fdf1ec;
+}
+.todo::before { content: "TODO — "; font-weight: 700; letter-spacing: .1em; }
+
+/* -------------------------------------------------------------- FOOTER */
+
+footer {
+  background: var(--ink); color: var(--band);
+  font-family: var(--mono); font-size: .75rem; padding: 2rem 0;
+}
+footer a { color: var(--gold); border-bottom-color: var(--gold); }
+footer a:hover { background: var(--gold); color: var(--ink); }
+.footlinks { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+
+@media (max-width: 40rem) {
+  .role-row { grid-template-columns: 1fr; gap: .3rem; }
+  .portrait { width: 84px; }
+}
+
+@media print {
+  .topnav, .greca, footer { display: none; }
+  body { background: #fff; }
+  a { color: #000; }
+}
